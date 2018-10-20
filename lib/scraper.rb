@@ -4,7 +4,7 @@ require 'pry'
 
 class Scraper
 
-  def self.scrape_index_page
+  def scrape_index_page
     doc = Nokogiri::HTML(open("./fixtures/student-site/index.html"))
     binding.pry
   end
