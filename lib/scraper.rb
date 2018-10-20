@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 require 'pry'
 
 class Scraper
@@ -13,4 +14,5 @@ class Scraper
   end
 
 end
+
 Scraper.new.scrape_index_page
