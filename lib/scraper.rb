@@ -27,6 +27,7 @@ class Scraper
   end
 
 end
+Scraper.new.scrape_profile_page
 
 
 #name = doc.css(".student-card").first.css("h4").text
