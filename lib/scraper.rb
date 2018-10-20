@@ -19,10 +19,11 @@ class Scraper
 
   def scrape_profile_page
     doc = Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
+    binding.pry
     # student = {}
-    # student[:twitter] = 
+    # student[:twitter] =
     # student[:profile_quote]
-    # student[:bio] = 
+    # student[:bio] =
   end
 
 end
