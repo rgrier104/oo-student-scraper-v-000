@@ -17,19 +17,29 @@ class Scraper
     students
   end
 
-  def scrape_profile_page
-    doc = Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
-    binding.pry
-    # student = {}
-    # student[:twitter] =
-    # student[:profile_quote]
-    # student[:bio] =
+  def self.scrape_profile_page(profile_url)
+    doc = Nokogiri::HTML(open(profile_url))
+    student_prof = {}
+    doc.css(".social-icon-container").css("a").each do |social|
+      if social.attribute("href").value.include?("twitter")
+        student_prof[:twitter] = social.attribute("href").value
+      elsif social.attribute("href").value.include?("linkedin")
+        student_prof[:linkedin] = social.attribute("href").value
+      elsif social.attribute("href").value.include?("github")
+        student_prof[:github] = social.attribute("href").value
+      else
+        student_prof[:blog] = social.attribute("href").value
+      end
+    student[:profile_quote] = doc.css(".profile-quote").text
+    student[:bio] = doc.css(".description-holder").css("p").text
   end
 
 end
-Scraper.new.scrape_profile_page
+
 
 
 #name = doc.css(".student-card").first.css("h4").text
 #location = doc.css(".student-card").first.css("p").text
 #url = doc.css(".student-card").first.css("a").attribute("href").value
+#quote = doc.css(".profile-quote").text
+#bio = doc.css(".description-holder").css("p").text
